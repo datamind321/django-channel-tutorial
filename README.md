@@ -1,3 +1,5 @@
+![django-channel](https://images.velog.io/images/infl_veggie/post/8be12d72-6f97-47c7-bbe7-81386a5f1f21/django-channels.png)
+
 # Django Channels Tutorial 
 ## 1. Sync Consumer
 ## 2. Async Consumer
@@ -12,4 +14,4 @@
 ### c. JsonWebSocket Consumer
 ### d. Async JsonWebSocket Consumer 
 
-![django-channel](https://images.velog.io/images/infl_veggie/post/8be12d72-6f97-47c7-bbe7-81386a5f1f21/django-channels.png)
+
