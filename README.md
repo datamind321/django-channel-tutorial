@@ -12,4 +12,4 @@
 ### c. JsonWebSocket Consumer
 ### d. Async JsonWebSocket Consumer 
 
-![django-channel](https://images.ctfassets.net/ee3ypdtck0rk/55TQmw4LAUbzQuWDDUSSr8/33178c17500e05c0151537603fc531fc/channel-layers-ni-django.jpeg?w=500&h=500&fl=progressive&q=50&fm=jpg)
+![django-channel](https://images.velog.io/images/infl_veggie/post/8be12d72-6f97-47c7-bbe7-81386a5f1f21/django-channels.png)
