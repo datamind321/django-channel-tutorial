@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat App</title>
+</head>
+<body>
+
+
+<h2>Group Name : {{group_name}}</h2>
+    
+<textarea name="" id="chat-log" cols="100" rows="20" readonly>
+    {% for chat in chats %} 
+
+    {{chat.message}}
+
+    {% endfor %}
+</textarea>
+<br>
+
+<input type="text" id="chat-message-input" size="100">
+<br>
+
+<input type="button" value="Send" id="chat-message-submit">
+
+{{group_name |json_script:"group-name"}}
+
+<script>
+const group_name = JSON.parse(document.getElementById('group-name').textContent)
+console.log(group_name)
+
+// var ws = new WebSocket('ws://127.0.0.1:8000/ws/chat/')
+
+var ws = new WebSocket('ws://' + window.location.host + '/ws/chat/' + group_name + '/')
+ws.onopen = function(event) {
+    console.log('websocket connected...',event)
+    // ws.send('hi from client')
+}
+
+ws.onmessage = function(event) {
+    console.log('message from server',event['data'])
+    console.log('type of msg',typeof(event['data']))
+    var data = JSON.parse(event['data'])
+    console.log('msg: ',data.msg)
+    console.log('username: ',data.user)
+    document.querySelector('#chat-log').value += (data.user + ':' + data.msg + '\n')
+}
+
+ws.onerror = function(event) {
+    console.log('Error Occured',event)
+}
+
+ws.onclose = function(event) {
+    console.log('Websocket Disconnected...',event)
+}
+
+
+document.getElementById('chat-message-submit').onclick = function(event) {
+    const messageInputDom = document.getElementById('chat-message-input')
+    const message = messageInputDom.value
+    ws.send(JSON.stringify({
+        'msg' : message,
+         }))
+    messageInputDom.value = ''
+}
+
+</script>
+</body>
+</html>
